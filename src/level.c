@@ -67,6 +67,36 @@ void level_fill_random(level *lvl, int wall_size){
             }
         }
     }
+    // Add damage power-up
+    for(int i=0;i<N_DMG;i++){
+        // Power-up position
+        int px = rand()%(lvl->size_x);
+        int py = rand()%(lvl->size_y);
+        // Place the power-up in a free cell (neither another power up nor a wall)
+        if(lvl->cells[py][px] == '.'){
+           lvl->cells[py][px] = 'D'; 
+        }
+    }
+    // Add speed power-up
+    for(int j=0;j<N_SPD;j++){
+        // Power-up position
+        int px = rand()%(lvl->size_x);
+        int py = rand()%(lvl->size_y);
+        // Place the power-up in a free cell (neither another power up nor a wall)
+        if(lvl->cells[py][px] == '.'){
+            lvl->cells[py][px] = 'S';
+        }
+    }    
+    // Add hp power-up
+    for(int k=0;k<N_HP;k++){
+        // Power-up position
+        int px = rand()%(lvl->size_x);
+        int py = rand()%(lvl->size_y);
+        // Place the power-up in a free cell (neither another power up nor a wall)
+        if(lvl->cells[py][px] == '.'){
+            lvl->cells[py][px] = 'H';
+        }
+    } 
 }
 
 // Free level memory

@@ -2,11 +2,19 @@
 #define LEVEL_H
 
 #define TILE_SIZE 48
+/* Set the number of power-ups available on the level */
+#define N_DMG 5
+#define N_SPD 5
+#define N_HP 10
+
 
 /* A level is a matrix of cells, each cell is represented using chars.
 '.' = free cells
-'#' = walls
+'D' = dmg power up
+'S' = speed power up
+'H' = hp power up
 */
+
 typedef struct {
     int size_x, size_y;
     char **cells;

@@ -15,6 +15,8 @@ typedef struct {
     int hp;
     // if it is dead or not
     int dead;
+    // if the player picked up a power-up
+    int powerup;
 } entity;
 
 /* Updates the entity position according to its velocity.

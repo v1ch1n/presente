@@ -13,6 +13,21 @@ int entity_physics(const level *lvl, entity *ent){
     char cell = level_get(lvl,tile_x,tile_y);
 
     if(cell=='#') return 1;
+
+    if(ent->powerup == 1){
+    	// Delete the power-up from the level and replace it with a free cell
+    	lvl->cells[tile_y][tile_x] = '.';
+    	// Return different values depending of the power-up
+    	if(cell == 'D'){
+    		return 2;
+    	}
+    	else if(cell == 'S'){
+    		return 3;
+    	}
+    	else if(cell == 'H'){
+    		return 4;
+    	}
+    }
     return 0;
 }
 

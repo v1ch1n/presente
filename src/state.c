@@ -86,8 +86,29 @@ void state_update(level *lvl, state *sta){
 
     // == Update entities
     // Update player
-    entity_physics(lvl,&sta->pla.ent);
+    sta->pla.ent.powerup = 1;
+    int cell_powerup = entity_physics(lvl, &sta->pla.ent);
+    sta->pla.ent.powerup = 0;
     if(sta->pla.ent.hp<=0) sta->pla.ent.dead=1;
+    // Check what power-up the player picked up and apply the effect
+    else{
+        // If power-up is a dmg power-up, weapon's dmg increases by 20 percent of inital dmg of the bullet
+        if(cell_powerup == '2'){
+            for(int i=0;i<MAX_BULLETS;i++){
+                bullet *new_bullet = &sta->bullets[i];
+                new_bullet->ent.hp += BULLET_DMG/5;
+            }
+        }
+        // If power-up is a speed power-up, player's speed increases by 25 percent of player's initial speed
+        else if(cell_powerup == '3'){
+            sta->pla.ent.vx += PLAYER_SPEED/4;
+            sta->pla.ent.vy += PLAYER_SPEED/4;
+        }
+        // Finally, if power-up is a hp power-up, player's hp increases by 20 percent of player's initial hp
+        else if(cell_powerup == '4'){
+            sta->pla.ent.hp += PLAYER_HP/5;
+        }
+    }
     // Update enemies
     for(int i=0;i<sta->n_enemies;i++){
         entity_physics(lvl,&sta->enemies[i].ent);

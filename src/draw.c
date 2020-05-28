@@ -11,6 +11,19 @@ void draw_level(const level *lvl){
             if(cell=='#'){
                 DrawRectangle(TILE_SIZE*x,TILE_SIZE*y,TILE_SIZE,TILE_SIZE,BROWN);
             }
+            // If the cell is a power-up, paint it (dmg purple, speed green, hp beige)
+            if(cell=='D'){
+                Vector2 vec = {TILE_SIZE*x,TILE_SIZE*y};
+                DrawCircleV(vec,8,PURPLE);
+            }
+            if(cell=='S'){
+                Vector2 vec = {TILE_SIZE*x,TILE_SIZE*y};
+                DrawCircleV(vec,8,GREEN);
+            }
+            if(cell=='H'){
+                Vector2 vec = {TILE_SIZE*x,TILE_SIZE*y};
+                DrawCircleV(vec,8,BEIGE);
+            }
         }
     }
 }
